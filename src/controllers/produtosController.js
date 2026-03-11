@@ -5,8 +5,10 @@ let nextId = 1;
 
 // GET /produtos - listar todos
 const listar = (req, res) => {
-  // TODO
+  res.status(200).json(produtos);
 };
+
+
 
 // GET /produtos/:id - buscar por ID
 const buscarPorId = (req, res) => {
