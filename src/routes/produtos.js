@@ -1,0 +1,12 @@
+const express = require('express');
+const router = express.Router();
+const ctrl = require('../controllers/produtosController');
+
+// Mapeamento: verbo HTTP + caminho → função do controller
+router.get('/', ctrl.listar);
+router.get('/:id', ctrl.buscarPorId);
+router.post('/', ctrl.criar);
+router.put('/:id', ctrl.atualizar);
+router.delete('/:id', ctrl.remover);
+
+module.exports = router;
