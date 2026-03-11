@@ -17,8 +17,18 @@ const buscarPorId = (req, res) => {
 };
 
 // POST /produtos - criar
+// POST /produtos - criar
 const criar = (req, res) => {
-  // TODO
+  const { nome, descricao, preco, categoria, estoque } = req.body;
+
+  if (!nome || !descricao || !preco || !categoria || !estoque)
+    return res.status(400).json({ erro: 'nome, descricao, preco, categoria e estoque são obrigatórios' });
+
+  const novo = { id: nextId++, nome, descricao, preco, categoria, estoque, ativo: true,
+    criado_em: new Date().toISOString(), atualizado_em: new Date().toISOString() };
+
+  produtos.push(novo);
+  res.status(201).json(novo);
 };
 
 // PUT /produtos/:id - atualizar
