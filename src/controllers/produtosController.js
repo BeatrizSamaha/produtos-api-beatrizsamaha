@@ -31,9 +31,22 @@ const criar = (req, res) => {
   res.status(201).json(novo);
 };
 
-// PUT /produtos/:id - atualizar
+
+// PUT /produtos/:id - atualizar completamente
 const atualizar = (req, res) => {
-  // TODO
+  const idx = produtos.findIndex(p => p.id === Number(req.params.id));
+
+  if (idx === -1) return res.status(404).json({ erro: 'Produto não encontrado' });
+
+  const { nome, descricao, preco, categoria, estoque, ativo } = req.body;
+
+  produtos[idx] = {
+    ...produtos[idx],
+    nome, descricao, preco, categoria, estoque, ativo,
+    atualizado_em: new Date().toISOString()
+  };
+
+  res.json(produtos[idx]);
 };
 
 // DELETE /produtos/:id - remover
