@@ -9,10 +9,11 @@ const listar = (req, res) => {
 };
 
 
-
 // GET /produtos/:id - buscar por ID
 const buscarPorId = (req, res) => {
-  // TODO
+  const produto = produtos.find(p => p.id === Number(req.params.id));
+  if (!produto) return res.status(404).json({ erro: 'Produto não encontrado' });
+  return res.status(200).json(produto);  
 };
 
 // POST /produtos - criar
